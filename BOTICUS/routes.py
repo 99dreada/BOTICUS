@@ -1,14 +1,24 @@
 from flask import(
-    render_template, url_for, request,
+    render_template,
 )
-from flask_breadcrumbs import register_breadcrub
-import boticus from app
+from BOTICUS import app
 
-@app.route('/', method=['GET','POST'])
-@register_breadcrub(app, '.', 'Home')
 
+"""
+ROUTING
+"""
+@app.route('/')
 def index():
-    return render_template(
-        'home.html',
-        title='Home',
-    )
+    return render_template('index.html')
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
+
+@app.route('/bots')
+def bots():
+    return render_template('bots.html')
+
+@app.route('/content')
+def content():
+    return render_template('content.html')

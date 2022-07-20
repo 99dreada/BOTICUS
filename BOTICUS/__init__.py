@@ -1,14 +1,8 @@
-from msilib.schema import Environment
-from flask import flask
-import click
-import os
+from flask import Flask
+
 app = Flask(__name__)
 
-def config_sass():
-    scss = Bundle('scss/main.scss', filters='pyscss', output='styles/css/main.css')
-    assets = Environment(app)
-    assets.debut=True
-    assets.register('scss_main',scss)
-    
-
 from BOTICUS import routes
+
+if __name__ == '__main__':
+   app.run()
