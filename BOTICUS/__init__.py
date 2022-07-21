@@ -3,6 +3,7 @@ from flask.cli import AppGroup
 import click
 import os
 from BOTICUS.model import db
+#from BOTICUS.login import login_init_app
 
 app = Flask(__name__)
 
@@ -12,7 +13,11 @@ def config_db(db_url='sqlite:///db/boticus.db'):
     app.secret_key = "#########"
     db.init_app(app)
 
+#def config_login():
+    #login_init_app(app)
+
 config_db()
+#config_login()
 from BOTICUS import routes
 
 db_cli = AppGroup('db')
