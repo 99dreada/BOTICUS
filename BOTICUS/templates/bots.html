@@ -1,1 +1,40 @@
 {% extends 'base.html' %}
+{% block content %}
+<h1>Bot management</h1>
+<button>Create New</button>
+<table border="2" width="100%">
+    <tr>
+        <th>
+            Bot name
+        </th>
+        <th>
+            Bot Status
+        </th>
+        <th>
+            Edit
+        </th>
+    </tr>
+    <tr>
+        <td>
+            bot 1
+        </td>
+        <td>
+            online
+        </td>
+        <td>
+            <button>edit</button>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            bot 2
+        </td>
+        <td>
+            offline
+        </td>
+        <td>
+            <button>edit</button>
+        </td>
+    </tr>
+</table>
+{% endblock %}
