@@ -17,7 +17,7 @@ def config_db(db_url='sqlite:///db/boticus.db'):
     #login_init_app(app)
 
 config_db()
-#config_login()
+#flask config_login()
 from BOTICUS import routes
 
 db_cli = AppGroup('db')

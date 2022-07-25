@@ -1,4 +1,4 @@
-/BOTICUS/__pycache__
+/BOTICUS/__pycache__*
 venv
 .gitignore
 boticus.db
