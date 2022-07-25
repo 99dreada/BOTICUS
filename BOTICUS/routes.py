@@ -3,6 +3,7 @@ from flask import(
 )
 from flask_login import login_required
 from BOTICUS import app
+import BOTICUS.blueprints
 
 
 """
@@ -24,6 +25,7 @@ def bots():
 def content():
     return render_template('content.html')
 
-@app.route('/login')
-def login():
-    return render_template('login.html')
+"""
+Blueprint registation
+"""
+app.register_blueprint(BOTICUS.blueprints.user, url_prefix='/User')
