@@ -1,6 +1,30 @@
 {% extends 'base.html' %}
 
+{% from 'includes/_formhelpers.html' import render_field_grid %}
+
 {% block content %}
+
+<div>
+  <form method="POST" action="">
+    {{ form.hidden_tag() }}
+    <fieldset class="form-group">
+      <legend class="border-bottom mb-4">Login</legend>
+      {{ render_field_grid(form.username)}}
+      {{ render_field_grid(form.password)}}
+      <div class="form-check">
+        {{ form.remember(class="form-check-input")}}
+        {{ form.remember.label(class="form-check-label")}}
+      </div>
+    </fieldset>
+    <div class="form-group">
+      {{form.submit(class="btn btn-outline-info")}}
+      <small class="text-muted ml-2">
+        If you have forgotten your password you will need to contact application manager
+      </small>
+    </div>
+  </form>
+</div>
+<!--
 <form class="form-signin">
     <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
     <label for="inputEmail" class="sr-only">Email address</label>
@@ -13,5 +37,5 @@
       </label>
     </div>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-  </form>
+  </form>-->
 {% endblock %}

@@ -39,6 +39,7 @@ GOTO begin
 
 :Run
 Echo Application will now start
+cd /BOTICUS
 flask run
 
 :exit

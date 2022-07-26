@@ -1,1 +1,33 @@
-{%%}
+{% macro render_field(field, editable=True, class_="") %}
+  {% if editable %}
+    {% set class_ = "{} form-control".format(class_) %}
+    {% if field.errors %}
+      {% set class_ = "{} is-invalid".format(class_) %}
+    {% endif %}
+    {% set classkwargs = kwargs | dict_but(class_=class_) %}
+    {{ field(**classkwargs)|safe }}
+  {% else %}
+    {% if field.__class__.__name__ == 'SelectField' %}
+      {% set thisvalue = dict(field.choices)[field.data] %}
+    {% else %}
+      {% set thisvalue = field.data | dtg_format %}
+    {% endif %}
+    <label class="form-control-plaintext w-auto {{ class_ }}"
+      id="{{ field.name }}">
+      {{ thisvalue }}
+    </label>
+    <input type="hidden" name="{{ field.name }}" value="{{ field.data | iso_8601_format }}">
+  {% endif %}
+  {% if field.errors %}
+    {% for error in field.errors %}
+      <div class="help-inline text-danger" >{{ error }}</div>
+    {% endfor %}
+  {% endif %}
+{% endmacro %}
+
+{% macro render_field_grid(field, left=4, right=8) %}
+  <div class="form-group row">
+    <label class="col-lg-{{ left }} col-form-label">{{field.label}}</label>
+    <div class="col-lg-{{ right }}">{{ render_field(field, **kwargs) }}</div>
+  </div>
+{% endmacro %}
