@@ -8,15 +8,25 @@ ECHO 1.Full Setup (Run this if first time setup)
 ECHO 2.Install requirements
 ECHO 3.Build DB
 ECHO 4.Run Application
+ECHO 5.Setup Enviroment
 ECHO.
-CHOICE /C 1234 /M "Enter your choice:"
+CHOICE /C 12345 /M "Enter your choice:"
 
+IF ERRORLEVEL 5 GOTO Envsetup
 IF ERRORLEVEL 4 GOTO Run
 IF ERRORLEVEL 3 GOTO Builddb
 IF ERRORLEVEL 2 GOTO Install
 IF ERRORLEVEL 1 GOTO Fullsetup
 
+:Envsetup
+ECHO Setting up enviroment
+set FLASK_APP=BOTICUS
+set FLASK_ENV=development
+
 :Fullsetup
+ECHO Setting up enviroment
+set FLASK_APP=BOTICUS
+set FLASK_ENV=development
 Echo Installing dependancy
 pip install -r requirements.txt
 ECHO Setting up database
