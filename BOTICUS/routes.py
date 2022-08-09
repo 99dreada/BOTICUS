@@ -1,7 +1,6 @@
 from flask import(
     render_template,
 )
-from flask_login import login_required
 from BOTICUS import app
 import BOTICUS.blueprints
 

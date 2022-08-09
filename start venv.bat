@@ -21,12 +21,12 @@ IF ERRORLEVEL 1 GOTO Fullsetup
 :Envsetup
 ECHO Setting up enviroment
 set FLASK_APP=BOTICUS
-set FLASK_ENV=development
+set FLASK_DEBUG=development
 
 :Fullsetup
 ECHO Setting up enviroment
 set FLASK_APP=BOTICUS
-set FLASK_ENV=development
+set FLASK_DEBUG=development
 Echo Installing dependancy
 pip install -r requirements.txt
 ECHO Setting up database
@@ -49,8 +49,13 @@ GOTO begin
 
 :Run
 Echo Application will now start
-cd /BOTICUS
 flask run
+if  errorlevel 1 goto ERROR
 
 :exit
 @exit
+
+:ERROR
+echo Failed
+cmd /k
+exit /b 1
