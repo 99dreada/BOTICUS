@@ -8,7 +8,7 @@ from flask import (
 
 )
 from flask_login import login_user, current_user
-from BOTICUS.login import login_manager,hash_generate, hash_check
+from BOTICUS.login import login_manager
 from BOTICUS.model import (
     db,
     User_sql,
@@ -30,7 +30,7 @@ def load_user(user_id):
 @user.route("/login", methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for("/"))
+        return redirect(url_for("bots"))
     form = Login_Form()
     if request.method == 'GET':
         pass

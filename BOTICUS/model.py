@@ -14,7 +14,6 @@ class User_sql(db.Model, UserMixin):
         return f"User('{self.id}','{self.username}','{self.email}', '{self.password}')"
 
 import csv
-from BOTICUS.login import hash_generate
 
 class Bots_sql(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -40,9 +39,6 @@ TABLES_TO_SAVE = [
     Bots_sql,
     Channels_sql
 ]
-TABLE_ROW_PROCESS = {
-    User_sql: { 'password': hash_generate },
-}
 
 def create_db():
     try: db.drop_all()
