@@ -7,7 +7,7 @@ from flask import (
     Blueprint,
 
 )
-from flask_login import login_user, current_user
+from flask_login import login_required, login_user, logout_user, current_user
 from BOTICUS.login import login_manager
 from BOTICUS.model import (
     db,
@@ -43,3 +43,9 @@ def login():
         else:
             flash('Login Unsuccessful. please check username and password', 'danger')
     return render_template('user/login.html', title='Login', form=form)
+
+@user.route("/logout")
+@login_required
+def logout():
+        logout_user()
+        return redirect("login")
