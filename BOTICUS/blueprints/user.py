@@ -35,8 +35,7 @@ def login():
     if request.method == 'GET':
         pass
     elif form.validate_on_submit():
-        print("yes")
-        user = User_sql.query.filter_by(username=form.username.data).first()
+        user = User_sql.query.filter_by(username=form.Username.data).first()
         if user and form.password.data:
             login_user(user, remember=form.remember.data)
             return redirect(url_for("bots"))

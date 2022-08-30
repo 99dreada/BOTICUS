@@ -6,11 +6,10 @@
 
 <div>
   <form method="POST" action="">
-    {{ form.hidden_tag() }}
     <fieldset class="form-group">
       <legend class="border-bottom mb-4">Login</legend>
-      {{ render_field_grid(form.username)}}
-      {{ render_field_grid(form.password)}}
+      {{ render_field_grid(form.Username)}}
+      {{ render_field_grid(form.Password)}}
       <div class="form-check">
         {{ form.remember(class="form-check-input")}}
         {{ form.remember.label(class="form-check-label")}}

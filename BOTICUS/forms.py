@@ -1,15 +1,16 @@
-from wtforms import(
-    Form,
-    StringField,
-    PasswordField,
+from wtforms import (
     BooleanField,
-    SubmitField,
-    validators,
+    SubmitField
 )
-from flask_wtf import FlaskForm
+from BOTICUS import app
+from wtforms_alchemy import ModelForm
 
-class Login_Form(FlaskForm):
-    username = StringField('Username', validators=[validators.DataRequired(), validators.Length(min=2, max=20)])
-    password = PasswordField('Password', validators=[validators.DataRequired(), validators.Length(min=4)])
+from BOTICUS.model import (
+    User_sql,
+)
+
+class Login_Form(ModelForm):
+    class Meta:
+        model = User_sql
     remember = BooleanField('Remember Me')
     submit = SubmitField('Login')
