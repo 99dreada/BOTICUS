@@ -8,6 +8,9 @@ from flask import (
 
 )
 from flask_login import login_required, login_user, logout_user, current_user
+from wtforms import (
+    validators,
+)
 from BOTICUS.login import login_manager
 from BOTICUS.model import (
     db,
@@ -34,7 +37,8 @@ def login():
     form = Login_Form()
     if request.method == 'GET':
         pass
-    elif form.validate_on_submit():
+    elif form.
+    ():
         user = User_sql.query.filter_by(username=form.Username.data).first()
         if user and form.password.data:
             login_user(user, remember=form.remember.data)
