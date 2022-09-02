@@ -37,8 +37,7 @@ def login():
     form = Login_Form()
     if request.method == 'GET':
         pass
-    elif form.
-    ():
+    elif form.validate_on_submit():
         user = User_sql.query.filter_by(username=form.Username.data).first()
         if user and form.password.data:
             login_user(user, remember=form.remember.data)
