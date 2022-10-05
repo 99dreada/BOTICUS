@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+    <div class="row">
+        <div class="col-lg-11">
+            <h1>Bot Management</h1>
+        </div>
+        <div class="col-lg-1">
+            <a class='float-right m-1' href="{{ url_for('bot.create') }}">New MTF</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 table-responsive">
+            <table class="display table table-striped text-center table-bordered table-sm dataTable"
+            cellspacing="0" width="100%" role="grid" aria-describedby="dtBasicExample_info" style="width: 100%;">
+                <thead>
+                    <tr role="row" style="background-color: #bbb">
+                        <th>Name</th>
+                        <th>Status</th>
+                        <th>Edit</th>
+                    </tr>
+                    {% for bot in bots %}
+                    <tr rol="row" class="odd">
+                        <td>{{ bot.Name }}</td>
+                        <td>{{ bot.Status }}</td>
+                        <td>
+                            <a class="btn btn-secondary" href="{{ url_for('bot.edit', Name=bot.Name) }}">Edit</a>
+                        </td>
+                    </tr>
+                    {%  endfor %}
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
