@@ -1,5 +1,5 @@
-.gitignore
 BOTICUS/__pycache__
 BOTICUS/blueprints/__pycache__
 venv
-BOTICUS/db
+BOTICUS/db/boticus.db
+.gitignore
