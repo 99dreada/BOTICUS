@@ -1,0 +1,5 @@
+BOTICUS/__pycache__
+BOTICUS/blueprints/__pycache__
+.gitignore
+venv
+BOTICUS/db/boticus.db

@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Bot {{ action_mode }}</h1>
+    {% from 'includes/_formhelpers.html' import render_field_grid, save_cancel, delete, render_delete_modal %}
+    <form id="alert_form" method="POST" action="">
+        <div class="row">
+            <div class="col-lg-10">
+                <fieldset>
+                    <legend><label>Basic Details</label></legend>
+                    {% if action_mode == 'Edit' %}
+                        {{ render_field_grid(bot_form.Name, class_="w-75") }}
+                    {% else %}
+                        {{ render_field_grid(bot_form.Name, class_="w-75") }}
+                    {% endif %}
+                    {{ render_field_grid(bot_form.API_Key, class_="w-75")}}
+                    {{ render_field_grid(bot_form.Description, class_="w-75")}}
+                </fieldset>
+            </div>
+        </div>
+        <div class="row">
+            {% if action_mode =='Edit' %}
+                {{ delete() }}
+            {% endif %}
+            {{ save_cancel() }}
+        </div>
+    </form>
+    {% if action_mode == 'Edit' %}
+        {{ render_delete_modal('bot', Name=name) }}
+    {% endif %}
+{% endblock %}
