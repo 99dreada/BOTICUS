@@ -6,25 +6,14 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-            <a class="nav-link" href="{{ url_for('bots')}}">Bot Management</a>
+            <a class="nav-link" href="{{ url_for('bot.list')}}">Bot Management</a>
         </li>
         <li class="nav-item active">
-            <a class="nav-link" href="{{ url_for('content')}}">content management</a>
+            <a class="nav-link" href="{{ url_for('index')}}">Content Management</a>
         </li>
         <li class="nav-item active">
-            <a class="nav-link" href="{{ url_for('about')}}">About</a>
+            <a class="nav-link" href="{{ url_for('index')}}">About</a>
         </li>
-      </ul>
-      <ul class="navbar-nav mt-2 mt-md-0">
-        {% if current_user.is_authenticated %}
-          <li class="nav-item active">
-            <a class="nav-link" href="{{ url_for('user.logout')}}">Logout</a>
-          </li>
-        {% else %}
-          <li class="nav-item active">
-              <a class="nav-link" href="{{ url_for('user.login')}}">Login</a>
-          </li>
-        {% endif %}
       </ul>
     </div>
   </nav>

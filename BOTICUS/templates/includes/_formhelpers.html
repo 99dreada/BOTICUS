@@ -9,14 +9,12 @@
   {% else %}
     {% if field.__class__.__name__ == 'SelectField' %}
       {% set thisvalue = dict(field.choices)[field.data] %}
-    {% else %}
-      {% set thisvalue = field.data | dtg_format %}
     {% endif %}
     <label class="form-control-plaintext w-auto {{ class_ }}"
       id="{{ field.name }}">
       {{ thisvalue }}
     </label>
-    <input type="hidden" name="{{ field.name }}" value="{{ field.data | iso_8601_format }}">
+    <input type="text" name="{{ field.name }}" value="{{ field.data }}">
   {% endif %}
   {% if field.errors %}
     {% for error in field.errors %}
@@ -30,4 +28,43 @@
     <label class="col-lg-{{ left }} col-form-label">{{field.label}}</label>
     <div class="col-lg-{{ right }}">{{ render_field(field, **kwargs) }}</div>
   </div>
+{% endmacro %}
+
+{% macro save_cancel() %}
+  <div class="col-lg-4">
+      <a class='btn btn-danger' href="">Cancel</a>
+  </div>
+  <div class="col-lg-4">
+      <input type='submit' class='btn btn-success' value='Save'>
+  </div>
+{% endmacro %}
+
+{% macro delete() %}
+  <div class="col-lg-4">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deleteModal">
+    Delete
+    </button>
+  </div>
+{% endmacro %}
+
+{% macro render_delete_modal(blueprint) %}
+  {% set thismethod = "{}.delete" .format(blueprint) %}
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="Confirm Deletion" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="deleteModalLabel">Confirm Deletion</h5>
+              <button type="button" class="close ,-1" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary m-1" data-dismiss="modal">Close</button>
+              <form action="{{ url_for(thismethod, **kwargs) }}" method="POST">
+                <input class="btn btn-danger" type="submit" value="Delete">
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
 {% endmacro %}

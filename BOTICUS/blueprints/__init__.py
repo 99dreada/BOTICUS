@@ -1,1 +1,1 @@
-from .user import user
+from .bot import bot

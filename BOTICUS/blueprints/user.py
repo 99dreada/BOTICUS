@@ -27,19 +27,25 @@ from BOTICUS.forms import (
 user = Blueprint('user', __name__)
 
 @login_manager.user_loader
-def load_user(user_id):
-    return User_sql.query.get(int(user_id))
+def load_user(id):
+    return User_sql.query.get(int(id))
 
 @user.route("/login", methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
+        print("test0")
+        print(current_user + "something")
         return redirect(url_for("bots"))
     form = Login_Form()
+    print("test1")
     if request.method == 'GET':
+        print("test2")
         pass
     elif form.validate_on_submit():
-        user = User_sql.query.filter_by(username=form.Username.data).first()
-        if user and form.password.data:
+        print("test3")
+        user = User_sql.query.filter_by(Username=form.Username.data).first()
+        if user and form.Password.data:
+            print("test4")
             login_user(user, remember=form.remember.data)
             return redirect(url_for("bots"))
         else:
